@@ -12,7 +12,7 @@
   </head>
   <body>
       <div class="jumbotron">
-        <h1 class="display-4">Word Guess Game</h1>
+        <h1 class="display-5">Word Guess Game</h1>
         <p class="lead">Press any key to get started!</p>
       </div>
 
@@ -24,7 +24,7 @@
                       Guess the following word:
                     </div>
                     <div class="card-body">
-                      <p class="card-text">Test Word Here</p>
+                      <p class="card-text" id="word-here">Test</p>
                     </div>
                 </div>
             </div>
@@ -36,7 +36,7 @@
                       Number of Wins:
                     </div>
                     <ul class="list-group list-group-flush">
-                      <li class="list-group-item">Number of Wins:</li>
+                      <li class="list-group-item" id=num-wins>0</li>
                     </ul>
                   </div>
               </div>
@@ -46,7 +46,7 @@
                        Guesses Remaining:
                     </div>
                     <ul class="list-group list-group-flush">
-                      <li class="list-group-item">Guesses Remaining:</li>
+                      <li class="list-group-item" id="guesses-remaining">0</li>
                     </ul>
                   </div>
               </div>
@@ -56,7 +56,7 @@
                       Letters Guessed:
                     </div>
                     <ul class="list-group list-group-flush">
-                      <li class="list-group-item">Letters Guessed:</li>
+                      <li class="list-group-item" id="letters-guessed"></li>
                     </ul>
                   </div>
               </div>
@@ -68,5 +68,29 @@
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script type=text/javascript>
+        var wins = 0;
+        var lettersGuessed = [];
+        var words = ["rock", "paper", "scissors"];
+        var word = words[Math.floor(Math.random() * words.length)];
+        var letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+        var numGuesses = word.length + 7;
+        console.log(numGuesses);
+
+        $(document).ready(function() {
+            $("#word-here").text(word);
+            $("#guesses-remaining").text(numGuesses);
+
+            document.onkeyup = function(event) {
+                var userGuess = event.key;
+                $("#letters-guessed").append("<p>"+ userGuess +"</p>")
+                numGuesses = numGuesses - 1; 
+                $("#guesses-remaining").text(numGuesses);
+            }
+
+
+        });
+
+    </script>
   </body>
 </html>
